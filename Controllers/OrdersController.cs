@@ -40,6 +40,13 @@ namespace SimpleOrderSystem.Controllers
             var orders = os.ListOrdersBySalesRepresentative(id);
             return Json(new { orders = orders }, JsonRequestBehavior.AllowGet);
         }
+        //GET api
+        [HttpGet]
+        public JsonResult ListOrdersBySalesOffice(int id)
+        {
+            var orders = os.ListOrdersBySalesOffice(id);
+            return Json(new { orders = orders }, JsonRequestBehavior.AllowGet);
+        }
         //POST api
         [HttpPost]
         [ActionName("CreateOrder")]

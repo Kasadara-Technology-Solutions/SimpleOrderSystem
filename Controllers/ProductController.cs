@@ -20,6 +20,8 @@ namespace SimpleOrderSystem.Controllers
             var products = Ps.GetAllProducts();
             return Json(new { products = products }, JsonRequestBehavior.AllowGet);
         }
+
+
         //GET api
         [HttpGet]
         [ActionName("GetProductsById")]
@@ -44,6 +46,16 @@ namespace SimpleOrderSystem.Controllers
             var products = Ps.GetProductsByOrderId(id);
             return Json(new { products = products }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        [ActionName("GetProductsByCustomerId")]
+        public JsonResult GetProductsByCustomerId(int id)
+        {
+            var products = Ps.GetProductsByCustomerId(id);
+            return Json(new { products = products }, JsonRequestBehavior.AllowGet);
+        }
+
+
         //POST api
         [HttpPost]
         [ActionName("CreateProduct")]
@@ -51,6 +63,8 @@ namespace SimpleOrderSystem.Controllers
         {
             Ps.CreateProduct(product);
         }
+
+
         //PUT api
         [HttpPut]
         [ActionName("EditProduct")]

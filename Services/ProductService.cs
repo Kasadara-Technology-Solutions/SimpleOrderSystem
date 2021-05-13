@@ -138,6 +138,44 @@ namespace SimpleOrderSystem.Services
             return order_Product;
         }
 
+        public Order_Product GetProductsByCustomerId(int ID)
+        {
+            connection();
+            string procedure = "ProductbyCustomerId";
+            sqlCommand.CommandText = procedure;
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@ID", ID);
+            sqlConnection.Open();
+            SqlDataReader dataReader = sqlCommand.ExecuteReader();
+            Product product = new Product();
+            Order order = new Order();
+            Order_Product order_Product = new Order_Product();
+            while (dataReader.Read())
+            {
+
+                order.ID = Convert.ToInt32(dataReader["ID"]);
+                order.CustomerID = Convert.ToInt32(dataReader["CustomerID"]);
+                order.OrderDate = Convert.ToDateTime(dataReader["OrderDate"]);
+                order.RequiredDate = Convert.ToDateTime(dataReader["RequiredDate"]);
+                order.ShippedDate = Convert.ToDateTime(dataReader["ShippedDate"]);
+                order.Status = Convert.ToInt32(dataReader["Status"]);
+                order.Comments = Convert.ToString(dataReader["Comments"]);
+                product.Code = Convert.ToInt32(dataReader["Code"]);
+                product.ProductlineID = Convert.ToInt32(dataReader["ProductlineID"]);
+                product.Name = Convert.ToString(dataReader["Name"]);
+                product.Scale = Convert.ToInt32(dataReader["Scale"]);
+                product.Vendor = Convert.ToString(dataReader["Vendor"]);
+                product.PdtDescription = Convert.ToString(dataReader["PdtDescription"]);
+                product.QtyInStock = Convert.ToInt32(dataReader["QtyInStock"]);
+                product.BuyPrice = Convert.ToInt32(dataReader["BuyPrice"]);
+                product.MSRP = Convert.ToString(dataReader["MSRP"]);
+                order_Product.product = product;
+                order_Product.order = order;
+            }
+            sqlConnection.Close();
+            return order_Product;
+        }
+
         public void CreateProduct(Product product)
         {
             connection();
