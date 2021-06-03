@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SimpleOrderSystem.Models;
 using SimpleOrderSystem.Services;
+using System.Web.Http.Cors;
 
 
 namespace SimpleOrderSystem.Controllers
@@ -15,6 +16,7 @@ namespace SimpleOrderSystem.Controllers
         //GET api
         [HttpGet]
         [ActionName("GetAllProducts")]
+        [EnableCors(origins: "http://localhost:5500", headers: "*", methods: "*")]
         public JsonResult Get()
         {
             var products = Ps.GetAllProducts();
@@ -68,6 +70,7 @@ namespace SimpleOrderSystem.Controllers
         //PUT api
         [HttpPut]
         [ActionName("EditProduct")]
+        [EnableCors(origins: "http://localhost:5500", headers: "*", methods: "*")]
         public void EditProduct(Product product)
         {
             Ps.EditProduct(product);

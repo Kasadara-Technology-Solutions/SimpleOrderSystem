@@ -24,7 +24,7 @@ namespace SimpleOrderSystem.Services
                 product.Code = Convert.ToInt32(dataReader["Code"]);
                 product.ProductlineID = Convert.ToInt32(dataReader["ProductlineId"]);
                 product.Name = Convert.ToString(dataReader["Name"]);
-                product.Scale = Convert.ToInt32(dataReader["Scale"]);
+                //product.Scale = Convert.ToInt32(dataReader["Scale"]);
                 product.Vendor = Convert.ToString(dataReader["Vendor"]);
                 product.PdtDescription = Convert.ToString(dataReader["PdtDescription"]);
                 product.QtyInStock = Convert.ToInt32(dataReader["QtyInStock"]);

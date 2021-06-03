@@ -4,12 +4,18 @@ using System.Linq;
 using System.Web.Http;
 using System.Net.Http.Formatting;
 using Newtonsoft.Json;
+using System.Web.Http.Cors;
+
+
 namespace SimpleOrderSystem
 {
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
+
+            //var cors = new EnableCorsAttribute("http://localhost:5500", "*", "*");
+            config.EnableCors();
             // Web API configuration and services
             var jsonformatter = new JsonMediaTypeFormatter
             {

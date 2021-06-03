@@ -14,6 +14,7 @@ namespace SimpleOrderSystem.Controllers
         OrderServices os = new OrderServices();
         //GET api
         [HttpGet]
+        [EnableCors(origins: "http://localhost:5500", headers: "*", methods: "*")]
         public JsonResult GetAllOrders()
         {
             var orders = os.GetAllOrders();
